@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from home import urls
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Works")
+    return render(request,'index.html')
