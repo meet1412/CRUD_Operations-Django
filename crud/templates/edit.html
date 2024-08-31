@@ -5,18 +5,28 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th class="id" scope="col">#</th>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
       </tr>
     </thead>
 
     <tbody>
         {% for i in edit %}
+
         <tr>
           <th scope="row">{{forloop.counter}}</th>
           <td>{{i.firstName}}</td>
           <td>{{i.lastName}}</td>
+          <td>
+            <button type="button" class="btn btn-dark"><a href="{% url 'update' i.id%}">Update</a></button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </td>
+          
         {% endfor %}
         </tr>
     </tbody>

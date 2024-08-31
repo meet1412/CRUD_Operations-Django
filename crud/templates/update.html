@@ -1,0 +1,18 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+<form action="/" method="POST">
+    {% csrf_token %}
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" class="form-control" name="firstName" id="firstName" required>
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="lastName" id="lastName" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form> 
+
+{%endblock%}
