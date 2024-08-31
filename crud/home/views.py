@@ -8,11 +8,13 @@ def home(request):
         lastName = request.POST['lastName']
         ins = Details(firstName=firstName, lastName=lastName)
         ins.save()
-        context = {'success': True}
+        context = {'success': True, 'name' : firstName}
+    
     else:
         context = {'success': False}
     return render(request,'index.html', context)
 
 def edit(request):
-    details = Details.objects.all()  # Fetch all records from the Details model
-    return render(request, 'edit.html', {'Details': details})
+    allTask = Details.objects.all()
+    context = {'edit': allTask}
+    return render(request, 'edit.html', context)
