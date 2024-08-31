@@ -14,4 +14,5 @@ def home(request):
     return render(request,'index.html', context)
 
 def edit(request):
-    return render(request, 'edit.html')
+    details = Details.objects.all()  # Fetch all records from the Details model
+    return render(request, 'edit.html', {'Details': details})
