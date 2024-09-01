@@ -14,14 +14,14 @@
     </thead>
 
     <tbody>
-        {% for i in edit %}
+        {% for i in view %}
 
         <tr>
           <th scope="row">{{forloop.counter}}</th>
           <td>{{i.firstName}}</td>
           <td>{{i.lastName}}</td>
           <td>
-            <button type="button" class="btn btn-dark"><a href="{% url 'update' i.id%}">Update</a></button>
+            <button type="button" class="btn btn-dark">Update</button>
           </td>
           <td>
             <button type="button" class="btn btn-danger">Delete</button>
