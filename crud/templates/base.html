@@ -17,7 +17,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="/">Home</a>
+                      <a class="nav-link" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="/view">View Names</a>
@@ -34,5 +34,24 @@
         {% block content %}
         {% endblock %}
     </div>
+    <script>
+        // JavaScript to dynamically set 'active' class based on current URL
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentPath = window.location.pathname; // Get the current path
+
+            // Select the navbar items
+            var homeLink = document.getElementById('nav-link');
+
+
+            // Remove active class from all, and set the correct one
+            if (currentPath === '/') {
+                homeLink.classList.add('active');
+                taskLink.classList.remove('active');
+            } else if (currentPath === '/view') {
+                taskLink.classList.add('active');
+                homeLink.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
