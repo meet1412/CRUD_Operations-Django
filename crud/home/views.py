@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from home.models import Details
 
 # Create your views here.
@@ -20,10 +20,21 @@ def view(request):
     return render(request, 'view.html', context)
 
 def update(request, id):
-    allName = Details.objects.get(id = id)
+    allName = get_object_or_404(Details, id=id)
 
     if request.method == "POST":
-        allName.firstName = request.POST.get['firstName']
-        allName.lastName = request.POST.get['lastName'] 
+        allName.firstName = request.POST.get('firstName')
+        allName.lastName = request.POST.get('lastName') 
         allName.save()
         return redirect('view')
+    
+    return render(request, 'update.html', {'allName': allName})
+
+def delete(request, id):
+    allName = get_object_or_404(Details, id=id)
+
+    if request.method == "POST":
+        allName.delete()
+        return redirect('view')
+    
+    return render(request, 'delete.html', {'allName': allName})

@@ -21,13 +21,19 @@
           <td>{{i.firstName}}</td>
           <td>{{i.lastName}}</td>
           <td>
-            <button type="button" class="btn btn-dark">Update</button>
+            <button type="button" class="btn btn-dark"><a href="{% url 'update_records' i.pk %}">Update</a></button>
           </td>
           <td>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-danger"><a href="{% url 'delete_records' i.pk %}">Delete</a></button>
           </td>
           
         {% endfor %}
+        <style>
+          a{
+            text-decoration: none;
+            color: white;
+          }
+        </style>
         </tr>
     </tbody>
   </table>
