@@ -17,7 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# Main URL configuration
 urlpatterns = [
+    # Admin URL: Maps to the Django admin interface
     path('admin/', admin.site.urls),
+    
+    # Include the URLs from the 'home' app: 
+    # Maps the root URL ('') to the URL patterns defined in 'home.urls'
     path('', include('home.urls')),
 ]

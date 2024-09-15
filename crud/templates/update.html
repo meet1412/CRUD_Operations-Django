@@ -2,16 +2,24 @@
 
 {% block content %}
 
+<!-- Form for updating a record -->
 <form action="{% url 'update_records' allName.id %}" method="POST">
+    <!-- CSRF token to protect against Cross-Site Request Forgery -->
     {% csrf_token %}
+    
+    <!-- Input field for first name, pre-filled with the current value -->
     <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
         <input type="text" class="form-control" name="firstName" id="firstName" value="{{ allName.firstName }}" required>
     </div>
+    
+    <!-- Input field for last name, pre-filled with the current value -->
     <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
         <input type="text" class="form-control" name="lastName" id="lastName" value="{{ allName.lastName }}" required>
     </div>
+    
+    <!-- Submit button to send the form data -->
     <button type="submit" class="btn btn-primary">Submit</button>
 </form> 
 

@@ -1,41 +1,54 @@
-{%extends "index.html"%}
+{% extends "index.html" %}
 
-{%block content%}
+{% block content %}
 
+<!-- Table to display data with Bootstrap styling -->
 <table class="table">
+    <!-- Table header -->
     <thead>
-      <tr>
-        <th class="id" scope="col">#</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Update</th>
-        <th scope="col">Delete</th>
-      </tr>
+        <tr>
+            <!-- Table headers for ID, First Name, Last Name, Update, and Delete actions -->
+            <th class="id" scope="col">#</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
     </thead>
 
+    <!-- Table body to loop through and display records -->
     <tbody>
+        <!-- Loop through the 'view' context variable, which contains all the records from the database -->
         {% for i in view %}
-
         <tr>
-          <th scope="row">{{forloop.counter}}</th>
-          <td>{{i.firstName}}</td>
-          <td>{{i.lastName}}</td>
-          <td>
-            <button type="button" class="btn btn-dark"><a href="{% url 'update_records' i.pk %}">Update</a></button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-danger"><a href="{% url 'delete_records' i.pk %}">Delete</a></button>
-          </td>
-          
-        {% endfor %}
-        <style>
-          a{
-            text-decoration: none;
-            color: white;
-          }
-        </style>
+            <!-- Display the current loop counter as the row number -->
+            <th scope="row">{{ forloop.counter }}</th>
+            <!-- Display the first and last names from the record -->
+            <td>{{ i.firstName }}</td>
+            <td>{{ i.lastName }}</td>
+            <!-- Update button: links to the update page for the current record based on its primary key (pk) -->
+            <td>
+                <button type="button" class="btn btn-dark">
+                    <a href="{% url 'update_records' i.pk %}">Update</a>
+                </button>
+            </td>
+            <!-- Delete button: links to the delete page for the current record based on its primary key (pk) -->
+            <td>
+                <button type="button" class="btn btn-danger">
+                    <a href="{% url 'delete_records' i.pk %}">Delete</a>
+                </button>
+            </td>
         </tr>
+        {% endfor %}
     </tbody>
-  </table>
+</table>
 
-{%endblock%}
+<!-- Inline CSS to remove underline from links and set text color to white inside buttons -->
+<style>
+    a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+{% endblock %}

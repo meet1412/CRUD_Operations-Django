@@ -1,29 +1,40 @@
-{%extends "base.html"%}
+{% extends "base.html" %}
 
-{%block content%}
+{% block content %}
 
-  <main>
-        {%if success%}
+<main>
+    <!-- Check if form submission was successful -->
+    {% if success %}
     
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Hello {{ name|upper }}</strong> Form Submittied
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <!-- Display a success alert if the form was submitted successfully -->
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hello {{ name|upper }}</strong> Form Submitted
+        <!-- Button to dismiss the alert -->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    {% endif %}
+
+    <!-- Form for submitting first and last name -->
+    <form action="/" method="POST">
+        <!-- CSRF token to protect against Cross-Site Request Forgery -->
+        {% csrf_token %}
+        
+        <!-- Input field for first name -->
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="firstName" required>
         </div>
+        
+        <!-- Input field for last name -->
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" name="lastName" id="lastName" required>
+        </div>
+        
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>   
+</main>
 
-        {%endif%}
-
-        <form action="/" method="POST">
-          {% csrf_token %}
-            <div class="mb-3">
-              <label for="firstName" class="form-label">First Name</label>
-              <input type="text" class="form-control" name="firstName" id="firstName" required>
-            </div>
-            <div class="mb-3">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" class="form-control" name="lastName" id="lastName" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>   
-  </main>
-
-  {% endblock %}
+{% endblock %}
