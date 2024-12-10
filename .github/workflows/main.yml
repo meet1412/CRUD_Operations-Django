@@ -1,6 +1,7 @@
 name: Automate Comment Changes in styles.css
 
 on:
+  workflow_dispatch:
   schedule:
     # Run the workflow every hour (adjust as needed)
     - cron: "0 * * * *"
